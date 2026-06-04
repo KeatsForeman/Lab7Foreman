@@ -36,7 +36,7 @@ void BadGuy::DrawBadGuy()
 	}
 
 }
-void BadGuy::StartBadGuy(int WIDTH, int HEIGHT)
+void BadGuy::StartBadGuy(int WIDTH, int HEIGHT, BadGuy badguys[], int guysize)
 {
 
 	if (!live)

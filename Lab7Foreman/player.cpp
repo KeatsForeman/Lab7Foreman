@@ -2,6 +2,7 @@
 #include <allegro5\allegro_primitives.h>
 #include <allegro5\allegro_image.h>
 #include "player.h"
+#include "BadGuy.h"
 
 player::~player()
 {
@@ -40,27 +41,59 @@ void player::DrawPlayer()
 {
 	al_draw_bitmap(image, x, y, 0);
 }
-void player::MoveUp()
+void player::MoveUp(BadGuy badguys[], int guysize)
 {
+	int temp = y;
 	y -= speed;
 	if (y < 0)
 		y = 0;
+	for (int i = 0; i < guysize; i++) {
+		int cx = badguys[i].getX();
+		int cy = badguys[i].getY();
+		if ((x < cx + 64 && cx < x + boundx) && (y < cy + 64 && cy < y + boundy)) {
+			y = temp;
+		}
+	}
 }
-void player::MoveDown(int HEIGHT)
+void player::MoveDown(int HEIGHT, BadGuy badguys[], int guysize)
 {
+	int temp = y;
 	y += speed;
 	if (y > HEIGHT - boundy)
 		y = HEIGHT - boundy;
+	for (int i = 0; i < guysize; i++) {
+		int cx = badguys[i].getX();
+		int cy = badguys[i].getY();
+		if ((x < cx + 64 && cx < x + boundx) && (y < cy + 64 && cy < y + boundy)){
+			y = temp;
+		}
+	}
 }
-void player::MoveLeft()
+void player::MoveLeft(BadGuy badguys[], int guysize)
 {
+	int temp = x;
 	x -= speed;
 	if (x < 0)
 		x = 0;
+	for (int i = 0; i < guysize; i++) {
+		int cx = badguys[i].getX();
+		int cy = badguys[i].getY();
+		if ((y < cy + 64 && cy < y + boundy) && (x < cx + 64 && cx < x + boundx)) {
+			x = temp;
+		}
+	}
 }
-void player::MoveRight(int WIDTH)
+void player::MoveRight(int WIDTH, BadGuy badguys[], int guysize)
 {
+	int temp = x;
 	x += speed;
 	if (x > WIDTH - boundx)
 		x = WIDTH - boundx;
+	for (int i = 0; i < guysize; i++) {
+		int cx = badguys[i].getX();
+		int cy = badguys[i].getY();
+		if ((y < cy + 64 && cy < y + boundy) && (x < cx + 64 && cx < x + boundx)) {
+			x = temp;
+		}
+	}
 }
