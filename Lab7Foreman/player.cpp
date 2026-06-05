@@ -27,6 +27,11 @@ player::player(int HEIGHT)
 	al_draw_line(32, 0, 32, 64, al_map_rgb(255, 100, 255), 2);
 	al_draw_circle(32, 32, 16, al_map_rgb(200, 200, 200), 5);
 
+	//gun
+	al_draw_filled_triangle(50, 26, 50, 30, 64, 30, al_map_rgb(255, 0, 0));
+	al_draw_filled_triangle(50, 38, 50, 34, 64, 34, al_map_rgb(255, 0, 0));
+	al_draw_line(54, 32, 64, 32,  al_map_rgb(255, 255, 0), 2);
+
 
 
 	x = 20;
@@ -47,6 +52,7 @@ void player::MoveUp(BadGuy badguys[], int guysize)
 	y -= speed;
 	if (y < 0)
 		y = 0;
+	//checks each bad guy
 	for (int i = 0; i < guysize; i++) {
 		int cx = badguys[i].getX();
 		int cy = badguys[i].getY();
