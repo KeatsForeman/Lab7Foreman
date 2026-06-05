@@ -36,7 +36,7 @@ void BadGuy::DrawBadGuy()
 	}
 
 }
-void BadGuy::StartBadGuy(int WIDTH, int HEIGHT, BadGuy badguys[], int guysize)
+void BadGuy::StartBadGuy(int WIDTH, int HEIGHT, BadGuy badguys[], int guysize, player &player)
 {
 	int tempx = 0;
 	int tempy = 0;
@@ -63,6 +63,12 @@ void BadGuy::StartBadGuy(int WIDTH, int HEIGHT, BadGuy badguys[], int guysize)
 						break;
 					}
 				}
+				int playerx = player.getX();
+				int playery = player.getY();
+				if ((tempx < playerx + 64 && tempx + boundx > playerx) && (tempy < playery + 64 && playery < tempy + boundy)) {
+					collide = true;
+				}
+
 				if (!collide) {
 					live = true;
 					x = tempx;

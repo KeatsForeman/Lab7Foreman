@@ -4,6 +4,8 @@
 #include <allegro5\allegro_primitives.h>
 #include "BadGuy.h"
 
+class BadGuy;
+
 class player
 {
 public:

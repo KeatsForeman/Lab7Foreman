@@ -2,6 +2,9 @@
 #define BADGUYH
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_primitives.h>
+#include "player.h"
+
+class player;
 
 class BadGuy
 {
@@ -9,7 +12,7 @@ public:
 	BadGuy();
 	~BadGuy();
 	void DrawBadGuy();
-	void StartBadGuy(int WIDTH, int HEIGHT, BadGuy badguys[], int guysize);
+	void StartBadGuy(int WIDTH, int HEIGHT, BadGuy badguys[], int guysize, player &player);
 	int getBoundX() { return boundx; }
 	int getBoundY() { return boundy; }
 	int getX() { return x; }
