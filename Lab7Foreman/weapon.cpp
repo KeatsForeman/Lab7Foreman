@@ -46,12 +46,14 @@ void weapon::Drawweapon()
 		angle += .1;
 	}
 }
+//take player object, bool up, down, and left
+//shoots projectile in the direction of player
 void weapon::Fireweapon(player& Player, bool up, bool down, bool left)
 {
 	if (!live)
 	{
-		x = Player.getX() + 32; //Player.getBoundX();
-		y = Player.getY() + 32; //Player.getBoundY() / 2;
+		x = Player.getX() + 32;
+		y = Player.getY() + 32; 
 		live = true;
 		if (up) {
 			dir = 0;
@@ -67,6 +69,8 @@ void weapon::Fireweapon(player& Player, bool up, bool down, bool left)
 		}
 	}
 }
+//takes width, height, and direction
+//moves in the direction given until the wall is hit
 void weapon::Updateweapon(int WIDTH, int HEIGHT, int dir)
 {
 	if (live) {

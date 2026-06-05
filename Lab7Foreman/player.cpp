@@ -37,6 +37,8 @@ player::player(int HEIGHT)
 	boundy = al_get_bitmap_height(image);
 
 }
+//takes direction booleans
+//draws player based on direction aimed
 void player::DrawPlayer(bool left, bool up, bool down)
 {
 	int uporleft = 0;

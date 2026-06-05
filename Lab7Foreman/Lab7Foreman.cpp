@@ -67,6 +67,7 @@ int main(void)
 		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
 
+		//updates direction bools based on player input
 		if (ev.type == ALLEGRO_EVENT_TIMER)
 		{
 			redraw = true;
