@@ -27,11 +27,6 @@ player::player(int HEIGHT)
 	al_draw_line(32, 0, 32, 64, al_map_rgb(255, 100, 255), 2);
 	al_draw_circle(32, 32, 16, al_map_rgb(200, 200, 200), 5);
 
-	//gun
-	al_draw_filled_triangle(50, 26, 50, 30, 64, 30, al_map_rgb(255, 0, 0));
-	al_draw_filled_triangle(50, 38, 50, 34, 64, 34, al_map_rgb(255, 0, 0));
-	al_draw_line(54, 32, 64, 32,  al_map_rgb(255, 255, 0), 2);
-
 
 
 	x = 20;
@@ -42,9 +37,42 @@ player::player(int HEIGHT)
 	boundy = al_get_bitmap_height(image);
 
 }
-void player::DrawPlayer()
+void player::DrawPlayer(bool left, bool up, bool down)
 {
-	al_draw_bitmap(image, x, y, 0);
+	int uporleft = 0;
+	if (left) {
+		uporleft = 1;
+	}
+	if (up) {
+		uporleft = 2;
+	}
+	if (down) {
+		uporleft = 3;
+	}
+	else {
+		al_draw_bitmap(image, x, y, 0);
+		al_draw_line(x + 32, y + 32, x + 64, y + 32, al_map_rgb(255, 255, 0), 2);
+		al_draw_filled_triangle(x + 44, y + 24, x + 48, y + 30, x + 64, y + 30, al_map_rgb(255, 0, 0));
+		al_draw_filled_triangle(x + 44, y + 40, x + 48, y + 34, x + 64, y + 34, al_map_rgb(255, 0, 0));
+	}
+	if (uporleft == 1) {
+		al_draw_bitmap(image, x, y, 0);
+		al_draw_line(x + 32, y + 32, x, y + 32, al_map_rgb(255, 255, 0), 2);
+		al_draw_filled_triangle(x + 20, y + 24, x + 16, y + 30, x, y + 30, al_map_rgb(255, 0, 0));
+		al_draw_filled_triangle(x + 20, y + 40, x + 16, y + 34, x, y + 34, al_map_rgb(255, 0, 0));
+	}
+	if (uporleft == 2) {
+		al_draw_bitmap(image, x, y, 0);
+		al_draw_line(x + 32, y + 32, x + 32, y, al_map_rgb(255, 255, 0), 2);
+		al_draw_filled_triangle(x + 24, y + 20, x + 30, y + 16, x + 30, y, al_map_rgb(255, 0, 0));
+		al_draw_filled_triangle(x + 40, y + 20, x + 34, y + 16, x + 34, y, al_map_rgb(255, 0, 0));
+	}
+	if (uporleft == 3) {
+		al_draw_bitmap(image, x, y, 0);
+		al_draw_line(x + 32, y + 32, x + 32, y + 64, al_map_rgb(255, 255, 0), 2);
+		al_draw_filled_triangle(x + 24, y + 44, x + 30, y + 46, x + 30, y + 64, al_map_rgb(255, 0, 0));
+		al_draw_filled_triangle(x + 40, y + 44, x + 34, y + 46, x + 34, y + 64, al_map_rgb(255, 0, 0));
+	}
 }
 void player::MoveUp(BadGuy badguys[], int guysize)
 {

@@ -57,6 +57,11 @@ int main(void)
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_set_target_bitmap(al_get_backbuffer(display));
 	al_start_timer(timer);
+
+	bool left = false;
+	bool up = false;
+	bool down = false;
+
 	while (!done)
 	{
 		ALLEGRO_EVENT ev;
@@ -65,15 +70,28 @@ int main(void)
 		if (ev.type == ALLEGRO_EVENT_TIMER)
 		{
 			redraw = true;
-			if (keys[UP])
+			if (keys[UP]) {
+				up = true;
+				down = false;
 				myPlayer.MoveUp(BadGuys, NUM_BadGuyS);
-			if (keys[DOWN])
+			}
+			if (keys[DOWN]) {
+				up = false;
+				down = true;
 				myPlayer.MoveDown(HEIGHT, BadGuys, NUM_BadGuyS);
-			if (keys[LEFT])
+			}
+			if (keys[LEFT]) {
+				up = false;
+				down = false;
+				left = true;
 				myPlayer.MoveLeft(BadGuys, NUM_BadGuyS);
-			if (keys[RIGHT])
+			}
+			if (keys[RIGHT]) {
+				up = false;
+				down = false;
+				left = false;
 				myPlayer.MoveRight(WIDTH, BadGuys, NUM_BadGuyS);
-
+			}
 			for (int i = 0;i < NUM_weapons;i++)
 				weapons[i].Updateweapon(WIDTH);
 			for (int i = 0;i < NUM_BadGuyS;i++)
@@ -141,7 +159,7 @@ int main(void)
 		{
 			redraw = false;
 
-			myPlayer.DrawPlayer();
+			myPlayer.DrawPlayer(left, up, down);
 			for (int i = 0;i < NUM_weapons;i++)
 				weapons[i].Drawweapon();
 			for (int i = 0;i < NUM_BadGuyS;i++)

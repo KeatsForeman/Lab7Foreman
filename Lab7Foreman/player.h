@@ -9,7 +9,7 @@ class player
 public:
 	player(int HEIGHT);
 	~player();
-	void DrawPlayer();
+	void DrawPlayer(bool left, bool up, bool down);
 	void MoveUp(BadGuy badguys[], int guysize);
 	void MoveDown(int HEIGHT, BadGuy badguys[], int guysize);
 	void MoveLeft(BadGuy badguys[], int guysize);

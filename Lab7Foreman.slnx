@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Lab7Foreman/Lab7Foreman.vcxproj" />
+  <Project Path="Lab7Foreman/Lab7Foreman.vcxproj" Id="b68db5cf-5a2f-4ac4-ab4b-a324b2f3fefa" />
 </Solution>
