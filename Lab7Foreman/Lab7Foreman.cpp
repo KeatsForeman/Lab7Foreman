@@ -73,11 +73,13 @@ int main(void)
 			if (keys[UP]) {
 				up = true;
 				down = false;
+				left = false;
 				myPlayer.MoveUp(BadGuys, NUM_BadGuyS);
 			}
 			if (keys[DOWN]) {
 				up = false;
 				down = true;
+				left = false;
 				myPlayer.MoveDown(HEIGHT, BadGuys, NUM_BadGuyS);
 			}
 			if (keys[LEFT]) {
@@ -93,7 +95,7 @@ int main(void)
 				myPlayer.MoveRight(WIDTH, BadGuys, NUM_BadGuyS);
 			}
 			for (int i = 0;i < NUM_weapons;i++)
-				weapons[i].Updateweapon(WIDTH);
+				weapons[i].Updateweapon(WIDTH, HEIGHT, weapons[i].getDir());
 			for (int i = 0;i < NUM_BadGuyS;i++)
 				BadGuys[i].StartBadGuy(WIDTH, HEIGHT, BadGuys, NUM_BadGuyS);
 			for (int i = 0;i < NUM_weapons;i++)
@@ -126,7 +128,7 @@ int main(void)
 			case ALLEGRO_KEY_SPACE:
 				keys[SPACE] = true;
 				for (int i = 0;i < NUM_weapons;i++)
-					weapons[i].Fireweapon(myPlayer);
+					weapons[i].Fireweapon(myPlayer, up, down, left);
 				break;
 			}
 		}
